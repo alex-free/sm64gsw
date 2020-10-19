@@ -64,5 +64,3 @@ and work on other little-endian Operating Systems.
 ==Changelog==
 ==Version 1.0.1==
 - Fixes a bug which prevented codes from being entered by the keyboard, after an invalid code was entered.
-
-</html>  
