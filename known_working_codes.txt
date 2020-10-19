@@ -1,0 +1,38 @@
+(WIP) Known Working Codes List
+
+Codes are not written by me unless noted!
+
+Code - Name - Author (If Known)
+
+812F8EC8 2400 - Yoshi Is Always On The Roof
+
+81249B48 2400 - Move instantly after teleportation
+
+812D5950 2400 - No wobbly paitings
+
+A032D58C 0001 - Level Select
+
+8032D594 0001 - Debug Resource Menu
+
+A032D598 0059 - Classic Debug display
+
+81249734 1000 - Disable Pause
+
+812505F4 1000 - Disable Death Barrier
+
+812BA5D0 2400 - Enter Vanish Cap Under The Moat Without Draining Moat
+
+8125415C 1000 - No Surface Heal
+
+A1254A30 0000
+A1254A32 0000 - Remove Mario's Cap
+
+8029CB73 0025 - 3D Objects Always Face Mario - James S https://sites.google.com/site/jamesskingdom/Home/game-codes-by-james-s/super-mario-64-codes
+
+81254866 0005
+81254872 5025 - Mario Always Faces Camera - James S https://sites.google.com/site/jamesskingdom/Home/game-codes-by-james-s/super-mario-64-codes
+
+8124DDBC 2400
+8124DE1C 2400 - Non-Stop - https://sites.google.com/site/sm64gameshark/codes/non-stop
+
+8124BBD4 2400 - Skip Intro - https://sites.google.com/site/sm64gameshark/codes/practice-files
