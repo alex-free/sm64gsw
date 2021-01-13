@@ -1,7 +1,7 @@
 /*
 BSD 3-Clause License
 
-Copyright (c) 2020, Alex Free
+Copyright (c) 2021, Alex Free
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <stdio.h>
 #include <string.h>
 
-int arg_length, rom_patch_offset, sub_address, add_address, behavior_bank_type_min, behavior_bank_type_max, code, change1, change2, type, read_codes, min_support, max_support;
+#define VER "1.1"
+
+int rom_patch_offset, sub_address, add_address, behavior_bank_type_min, behavior_bank_type_max, code, change1, change2, type, read_codes, min_support, max_support, noop1, noop2;
 
 typedef enum { FALSE, TRUE } bool;
 
@@ -46,18 +48,28 @@ FILE * txt;
 char yn_response[2];
 char gs_txt[255];
 
+void usage()
+{
+printf("Usage:\nsm64gsw -m <rom.z64>	Modify the CIC checksum in ROM\nsm64gsw <rom.z64> <file.txt>	Write codes in .txt File into ROM\nsm64gsw <rom.z64>	Type codes to write into ROM\n");
+end_input = TRUE;
+}
+
+void noop()
+{
+	noop1 = 0x066C;
+	noop2 = 0x0678;
+	fseek(rom, noop1, SEEK_SET);
+	fwrite("0", 1, 1, rom);
+	fseek(rom, noop2, SEEK_SET);
+	fwrite("0", 1, 1, rom);
+	printf("CRC check has been modified.\n");
+}
+
 void parse()
 {
 	if(code < min_support || code > max_support)
 	{
 	printf("Code is not in the supported range, can not write to ROM\n");
-	parse_died = TRUE;
-	end_input = TRUE;
-	}
-
-	if(rom == NULL)
-	{
-	printf("Loading the ROM file failed\n");
 	parse_died = TRUE;
 	end_input = TRUE;
 	}
@@ -75,12 +87,6 @@ void parse()
 	else if(type == 0x80 || type == 0xA0 || type == 0xF0)
 	{
 	eight_bit = TRUE;
-
-		if(change1 != 0x00)
-		{
-		printf("Unsupported or invalid code type.\n");
-		parse_died = TRUE;
-		}
 		
 		if(code >= behavior_bank_type_min && code <= behavior_bank_type_max) 
 		{
@@ -108,7 +114,6 @@ void parse()
 
 	if(!parse_died)
 	{
-	fseek(rom, 0, SEEK_SET);
 	printf("Offset: %X\n", rom_patch_offset);
 	fseek(rom, rom_patch_offset, SEEK_SET);
 		if(sixteen_bit)
@@ -128,25 +133,22 @@ void parse()
 		printf("Enter another code?\n");
 			while(!valid_input)
 			{
-			printf("(y/n): ");
-			fflush(stdin);
-				if(fgets(yn_response, sizeof(yn_response), stdin) != NULL)
-				{
+				printf("(y/n): ");
+				scanf("%s[\n]", &yn_response);
 					if(strcmp(yn_response,"y") == 0) 
 					{
-					valid_input = TRUE;
+						valid_input = TRUE;
 					}
 					else if(strcmp(yn_response,"n") == 0) 	
 					{
-					end_input = TRUE;		
-					valid_input = TRUE;
+						end_input = TRUE;
+						valid_input = TRUE;				
 					} 
 					else
 					{
-					printf("Invalid input, enter y or n\n");
+					printf("Invalid input, try again\n");
 					}
-				}
-			}
+			}		
 			valid_input = FALSE;			
 		}
 	}
@@ -167,101 +169,104 @@ valid_input = FALSE;
 parse_died = FALSE;
 cic_fail = FALSE;
 	
-printf("GameShark SM64 ROM Patcher version 1.0.1\nCopyright (c) 2020, Alex Free\n");
+printf("SuperMario64GameSharkWriter version %s\nCopyright (c) 2021, Alex Free\n", VER);
 
-	if(argc == 2) 
+	if(argc == 3) 
 	{
-	printf("ROM file selected: %s\n", argv[1]);
-	rom = fopen(argv[1], "rwb+");
+		if(strcmp(argv[1],"-m")==0)
+		{
+		rom = fopen(argv[2], "r+b");
+			if(rom == NULL)
+			{
+			printf("Loading the ROM file: %s failed!\n", argv[1]);
+			return(1);
+			}
+		noop();
+		end_input = TRUE;
+		}
+		else
+		{	
+		rom = fopen(argv[1], "r+b");
+		txt = fopen(argv[2], "r");
+		
+			if(rom == NULL)
+			{
+			printf("Loading the ROM file: %s failed!\n", argv[1]);
+			return(1);
+			}
+			
+			if(txt == NULL)
+			{
+			printf("Loading the txt file: %s failed!\n", argv[2]);
+			return(1);
+			}
+			else
+			{
+			printf("Writing codes in the txt file: %s to the ROM file: %s\n", argv[2], argv[1]);
+			file_input = TRUE;
+			}
+		}
 	}
-    else
-    {
-	printf("Usage:\nsm64gsw <romfile>\n");
-	end_input = TRUE;
-    }
+	else if(argc == 2)
+	{
+		rom = fopen(argv[1], "w+b");
+		if(rom == NULL)
+		{
+		printf("Loading the ROM file: %s failed!\n", argv[1]);
+		return(1);
+		}
+		else
+		{
+		printf("Loaded ROM file: %s for keyboard entry of codes\n", argv[1]);
+		}
+		kb_input = TRUE;
+	}
+	else
+	{
+		usage();
+	}
 	
 	while(!end_input)
 	{
 	sixteen_bit = FALSE;
 	eight_bit = FALSE;
-	end_input = FALSE;
 
-		while(!kb_input && !file_input) 
-		{
-		printf("\n**Code Input Selection Menu**\nf - Read code(s) in a txt file\nk - Manually type code(s)\nq - Quit\n(f/k/q): ");
-		fflush(stdin);
-			if(fgets(yn_response, sizeof(yn_response), stdin) != NULL)
-			{
-				if(strcmp(yn_response,"f") == 0) 
-				{
-				file_input = TRUE;
-				}
-				else if(strcmp(yn_response,"k") == 0) 	
-				{
-				kb_input = TRUE;		
-				} 
-				else if(strcmp(yn_response,"q") == 0) 	
-				{
-				return(0);		
-				} 
-				else
-				{
-				printf("Invalid input, enter f or k\n");
-				}
-			}
-		}
 	if(kb_input)
 	{
-	fflush(stdin);
 	printf("Code:");
-	scanf("%2X%6X %2X%2X", &type, &code, &change1, &change2);
+	scanf("%2X%6X %2X%2X[^\n]", &type, &code, &change1, &change2);
 	parse();
 	}
 	else if(file_input)
 	{
-	fflush(stdin);
-	printf("Enter the filepath of the TXT file containing codes: ");
-		scanf("%255s", gs_txt);
-		txt = fopen(gs_txt, "r");
-		if(txt == NULL)
+		while(1)
 		{
-		printf("Could not open the file: %s, please note that there can not be any spaces in the filepath\n", gs_txt);
-		parse_died = TRUE;
-		end_input = TRUE;
-		}
-		else
-		{
-			while(1)
+		read_codes = fscanf(txt, "%2X%6X %2X%2X[^\n]", &type, &code, &change1, &change2);	
+			if(read_codes != EOF && !parse_died)
 			{
-			read_codes = fscanf(txt, "%2X%6X %2X%2X", &type, &code, &change1, &change2);	
-				if(read_codes != EOF && !parse_died)
-				{
-				parse();
-				}
-				else
-				{
-				printf("File read complete\n");
-				end_input = TRUE;
-				break;
-				}
-			}			
-		}
+			parse();
+			}
+			else
+			{
+			printf("File read complete\n");
+			end_input = TRUE;
+			break;
+			}
+		}			
 	}	
 }
+
+	if(cic_fail)
+	noop();
+	
 	if(rom != NULL) 
 	fclose(rom);
 	
 	if(txt != NULL)
 	fclose(txt);
 	
-	if(cic_fail)
-	printf("At least one code invalidates the internal ROM checksum, run chksum64 on your ROM before playing\n");
-	
 	if(parse_died)
 	printf("Writing to ROM could not continue, aborted\n");	
-	
-printf("Press any key to continue\n");
-fflush(stdin);
-getchar();
+
 return(0);
 }
