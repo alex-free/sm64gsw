@@ -34,7 +34,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <stdio.h>
 #include <string.h>
 
-#define VER "1.1"
+#define VER "1.2"
 
 int rom_patch_offset, sub_address, add_address, behavior_bank_type_min, behavior_bank_type_max, code, change1, change2, type, read_codes, min_support, max_support, noop1, noop2;
 
@@ -209,7 +209,7 @@ printf("SuperMario64GameSharkWriter version %s\nCopyright (c) 2021, Alex Free\n"
 	}
 	else if(argc == 2)
 	{
-		rom = fopen(argv[1], "w+b");
+		rom = fopen(argv[1], "r+b");
 		if(rom == NULL)
 		{
 		printf("Loading the ROM file: %s failed!\n", argv[1]);
