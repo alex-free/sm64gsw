@@ -33,10 +33,17 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+// Big Endian is only supported on PowerPC Mac OS X, you'll need to change some things to have this work on other Big Endian platforms'
+#if defined(__BIG_ENDIAN__)
+    #include <machine/endian.h>
+    #include <libkern/OSByteOrder.h>
+#endif
 
-#define VER "1.2"
+#define VER "1.3"
 
-int rom_patch_offset, sub_address, add_address, behavior_bank_type_min, behavior_bank_type_max, code, change1, change2, type, read_codes, min_support, max_support, noop1, noop2;
+int rom_patch_offset, sub_address, add_address, behavior_bank_type_min, behavior_bank_type_max, code, type, read_codes, min_support, max_support, noop1, noop2;
+// For Big Endian conversion to Little Endian support
+unsigned int change1, change2, bechange1, bechange2;
 
 typedef enum { FALSE, TRUE } bool;
 
@@ -116,6 +123,23 @@ void parse()
 	{
 	printf("Offset: %X\n", rom_patch_offset);
 	fseek(rom, rom_patch_offset, SEEK_SET);
+        #if defined(__BIG_ENDIAN__)
+		if(sixteen_bit)
+		{
+		printf("Writing %2X...\n", change1);
+        bechange1 = OSSwapHostToLittleInt32(change1);
+		fwrite(&bechange1, 1, 1, rom);
+		printf("Writing %2X...\n", change2);
+        bechange2 = OSSwapHostToLittleInt32(change2);
+		fwrite(&bechange2, 1, 1, rom);
+		}
+		else if(eight_bit)
+		{
+		printf("Writing %2X...\n", change2);
+        bechange2 = OSSwapHostToLittleInt32(change2);
+		fwrite(&bechange2, 1, 1, rom);
+		}
+        #else
 		if(sixteen_bit)
 		{
 		printf("Writing %2X...\n", change1);
@@ -127,7 +151,8 @@ void parse()
 		{
 		printf("Writing %2X...\n", change2);
 		fwrite(&change2, 1, 1, rom);
-		}		
+		}
+        #endif		
 		if(kb_input && !parse_died)
 		{
 		printf("Enter another code?\n");

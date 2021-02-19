@@ -25,15 +25,15 @@
 <li><a href="#type_codes">Type GameShark Codes To ROM</a></li>
 <li><a href="#changelog">Changlog</a></li>
 <li><a href="#install_source">Install From Source</a></li>
-<li><a href="#known_issues">Known Issues</a></li>
 <li><a href="#license">License</a></li></ul>
 
 <a name=downloads><h2>Downloads</h2></a>
-<h3>Version 1.2</h3>
-<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.2/sm64gsw_1.2_win32.zip>Windows 95-Windows 10</a></p>
-<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.2/sm64gsw_1.2_linux_x86.zip>Linux x86</a></p>
-<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.2/sm64gsw_1.2_linux_x86_64.zip>Linux x86_64</a></p>
-<p><a href=https://github.com/alex-free/sm64gsw/archive/1.2.zip>Source Code</a></p>
+<h3>Version 1.3 (2/19/2021)</h3>
+<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.3/sm64gsw_1.3_mac_os_x_powerpc.zip>Mac OS X 10.3.9-10.6.8 PowerPC</a></p>
+<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.3/sm64gsw_1.3_win32.zip>Windows 95-Windows 10</a></p>
+<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.3/sm64gsw_1.3_linux_x86.zip>Linux x86</a></p>
+<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.3/sm64gsw_1.3_linux_x86_64.zip>Linux x86_64</a></p>
+<p><a href=https://github.com/alex-free/sm64gsw/archive/1.3.zip>Source Code</a></p>
 <p>View <a href=https://github.com/alex-free/sm64gsw/releases/>all releases</a>.</p>
 
 <a name=compat><h2>Supported Operating Systems</h2></a>
@@ -107,7 +107,10 @@
 <img src="https://alex-free.github.io/sm64gsw/sm64gsw_triple_damage_keyboard_entry_linux.png" alt="Triple damage keyboard entry on Linux" height="600">
 <a name=changelog><h2>Changelog</h2></a>
 
-<p>Version 1.2 - 1/22/20201</p>
+<p>Version 1.3 - 2/19/2021</p>
+<ul><li>Finally, Big Endian PowerPC Mac OS X is supported! Other Big Endian platforms are not yet however.</li></ul>
+
+<p>Version 1.2 - 1/22/2021</p>
 <ul><li>Fixed a bug on opening a ROM file for keyboard entry.</li></ul>
 
 <p>Version 1.1 - 1/13/2021</p>
@@ -124,7 +127,7 @@
 
 <a name=install_source><h2>Install From Source</h2></a>
 
-<p>This software is written to run on any ANSI-C platform with a little endian CPU. Builds for Linux and Windows are available. Other Unix-like Operating Systems should also work (including Intel/ARM Macs). Really, this software is as easy to compile as <code>gcc sm64gsw.c -o sm64gsw</code>. A GNU Makefile is provided that will do just that by default, when executing <code>make</code>. There are some additional rules to make various tasks easier to accomplish listed below.</p>
+<p>This software is written to run on any ANSI-C platform with a little endian CPU, or Big Endian PowerPC Mac OS X. Builds for PowerPC Mac OS X, Linux and Windows are available. Other Unix-like Operating Systems/platforms should also work (including Intel/ARM Macs). Really, this software is as easy to compile as <code>gcc sm64gsw.c -o sm64gsw</code>. A GNU Makefile is provided that will do just that by default, when executing <code>make</code>. There are some additional rules to make various tasks easier to accomplish listed below.</p>
 
 <p>Compile a static 32 bit Linux build.<p>
 <code>make linux-static32</code> 
@@ -132,15 +135,11 @@
 <p>Compile a static 64 bit Linux build.<p>
 <code>make linux-static64</code>
 
-<p>Cross compile using the i686-w64-mingw32-gcc compiler for Windows 95 OSR 2.5 and above (requires Internet Explorer 4.0 to be installed if running on Windows 95).</p>
+<p>Cross compile using the i686-w64-mingw32-gcc compiler for Windows 95 and above (requires Internet Explorer 4.0+ to be installed if running on Windows 95).</p>
 <code>make cross-win32</code>
 
-<p>Cross compile using the x86_64-w64-mingw32-gcc compiler for any 64 bit Windows.</p>
-<code>make cross-win64</code>
-
-<a name=known_issues><h2>Known Issues</h2></a>
-
-<ul><li>Only little endian CPUs are supported, big endian (such as old PowerPC) does not work.</li></ul>
+<p>Compile for Mac OS X 10.3.9-10.6.8 PowerPC (works on Intel up to 10.6.8 if Rosetta is installed)</p>
+<code>make mac-ppc</code>
 
 <a name=license><h2>License</h2></a>
 <p>This license is distributed with SuperMario64GameSharkWriter.</p>
