@@ -6,11 +6,13 @@
     <body>
 
 <h1>SM64GSW</h1> 
-<p>by Alex Free.</p>
+<p>by Alex Free</p>
 
-<p>SuperMario64GameSharkWriter is an open source <a href="#license">3-BSD</a> command line program written in C that writes GameShark/Xploder64 codes into a Super Mario 64 USA ROM (must be .z64/big endian format), and modifies the CRC check if neccesary (making this an alternatie to the CHKSUM64 program) allowing edited ROMs to boot in <a href="#emu_compat">emulators</a>. Unlike the old CHKSUM64 program the ROM will work in Mupen64Plus and many other emulators.</p>
+<p>SuperMario64GameSharkWriter is an open source <a href="#license">3-BSD</a> command line program written in C89 that writes GameShark/Xploder64 codes into a Super Mario 64 ROM (USA, JAPAN, PAL, or Shindou, must be .z64/big endian format), and modifies the CRC check if neccesary (making this an alternatie to the CHKSUM64 program) allowing edited ROMs to boot in <a href="#emu_compat">emulators</a>. Unlike the old <code>CHKSUM64</code> program the ROM will work in Mupen64Plus and many other emulators.</p>
 
-<p>SM64GSW performs Messiaen64's ROM hex editing methods written at <a href=https://sites.google.com/site/messiaen64/patching-gameshark-codes>Patching GameShark Codes</a> and <a href=https://sites.google.com/site/messiaen64/getting-rid-of-the-checksum-trap>Getting Rid Of The Checksum Trap</a> in software automatically so you don't have to hex edit your SM64 ROM manually. You want to use the ROM file most likely named 'Super_Mario_64__U_____.z64' with this software. The .z64 rom file type is big endian, which is required.</p>
+<p>Create rom hacks using gameshark codes or add gameshark codes directly into your hack!</p>
+
+<p>SM64GSW performs Messiaen64's ROM hex editing methods written at <a href=https://sites.google.com/site/messiaen64/patching-gameshark-codes>Patching GameShark Codes</a> and <a href=https://sites.google.com/site/messiaen64/getting-rid-of-the-checksum-trap>Getting Rid Of The Checksum Trap</a> in software automatically so you don't have to hex edit your SM64 ROM manually. You want to use the ROM file most likely named 'Super_Mario_64__U_____.z64' (USA release) with this software, although all other regions in the The .z64 rom file type (which is big endian, which is required) also work.</p>
 
 <p><a href=https://github.com/alex-free/sm64gsw>GitHub</a> || <a href=https://alex-free.github.io/sm64gsw>HomePage</a></p>
 
@@ -23,22 +25,25 @@
 <li><a href="#modify_cic">Modify CIC Check</a></li>
 <li><a href="#write_codes">Write GameShark Codes Listed In A TXT File To ROM</a></li>
 <li><a href="#type_codes">Type GameShark Codes To ROM</a></li>
+<li><a href="#argless">Using The Argless Mode</a></li>
 <li><a href="#changelog">Changlog</a></li>
 <li><a href="#install_source">Install From Source</a></li>
 <li><a href="#license">License</a></li></ul>
 
 <a name=downloads><h2>Downloads</h2></a>
-<h3>Version 1.3 (2/19/2021)</h3>
-<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.3/sm64gsw_1.3_mac_os_x_powerpc.zip>Mac OS X 10.3.9-10.6.8 PowerPC</a></p>
-<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.3/sm64gsw_1.3_win32.zip>Windows 95-Windows 10</a></p>
-<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.3/sm64gsw_1.3_linux_x86.zip>Linux x86</a></p>
-<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.3/sm64gsw_1.3_linux_x86_64.zip>Linux x86_64</a></p>
-<p><a href=https://github.com/alex-free/sm64gsw/archive/1.3.zip>Source Code</a></p>
+<h3>Version 1.4 (7/18/2021)</h3>
+<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.4/sm64gsw_1.4_mac_os_powerpc.sit>Mac OS 8-9 PowerPC</a></p>
+<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.4/sm64gsw_1.4_mac_os_x_powerpc.zip>Mac OS X 10.3.9-10.6.8 PowerPC</a></p>
+<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.4/sm64gsw_1.4_win32.zip>Windows 95-Windows 10</a></p>
+<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.4/sm64gsw_1.4_linux_x86.zip>Linux x86</a></p>
+<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.4/sm64gsw_1.4_linux_x86_64.zip>Linux x86_64</a></p>
+<p><a href=https://github.com/alex-free/sm64gsw/archive/1.4.zip>Source Code</a></p>
+<p><a href=https://github.com/alex-free/sm64gsw/releases/download/1.4/sm64gsw_1.4_mac_os_source.sit>Classic Mac OS Source Code</a></p>
 <p>View <a href=https://github.com/alex-free/sm64gsw/releases/>all releases</a>.</p>
 
 <a name=compat><h2>Supported Operating Systems</h2></a>
 
-<p>The win32 version works on Windows 95 OSR 2.5 and newer (Requires Internet Explorer 4.0 installed if using Windows 95). There are Linux versions for x86 32 bit and x86_64 64 bit which should work on most distros. Other Operating Systems that use little endian CPUs (such as ARM, x86, x86_64) can be compiled for from <a href="#install_source">source</a>.</p>
+<p>The win32 version works on Windows 95 OSR 2.5 and newer (Requires Internet Explorer 4.0 installed if using Windows 95). There are Linux versions for x86 32 bit and x86_64 64 bit which should work on most distros. Other Operating Systems can be compiled for from <a href="#install_source">source</a>.</p>
 
 <a name=code_compat><h2>GameShark Code Compatibility</h2></a>
 
@@ -57,6 +62,8 @@
 <p>1964, Mupen64, and Mupen64Plus will run the resulting edited ROMs as normal. Other emulators may display error messages on loading the ROM but still work. Nemu64 0.8 will display an error message "Unknown bootcode. Chances that this game won't work are high". Project 64 1.6 will display two error messages. "Unknown Cic Chip" and "Unhandled CicChip(-1) in first DMA". Other emulators were not tested, but any really should work. Have no idea about a real console.</p>
 
 <a name=usage><h2>Usage</h2></a>
+
+<p>Classic Mac OS (Mac OS 9 and below) use the argless mode by default. Read the <a href="#argless">Using The Argless Mode</a> section to learn how to use this mode on classic mac os, or to use it manually on any other operating system.</p>
 
 <p>This is a command line program, so on Windows you can open command.com or cmd.exe to execute sm64gsw.exe. On other Operating Systems use the Terminal. There are 3 main features.</p>
 
@@ -105,7 +112,25 @@
 
 <img src="https://alex-free.github.io/sm64gsw/sm64gsw_triple_damage_keyboard_entry_win95.png" alt="Triple damage keyboard entry on Windows 95" height="600">
 <img src="https://alex-free.github.io/sm64gsw/sm64gsw_triple_damage_keyboard_entry_linux.png" alt="Triple damage keyboard entry on Linux" height="600">
+
+<a name=argless><h3>Using The Argless Mode</h3></a>
+
+<p>SM64GSW has an alternative menu interface system that can be used instead of the normal command line arguments. On Classic Mac OS 9 and earlier this mode is the default mode. If your not running classic Mac OS 9 or earlier but want to use argless mode, you can manually trigger it with the the command line <code>-a</code> argument:</p>
+
+<p><code>sm64gsw -a</code></p>
+
+<p><b>NOTE:</b> currently when using the argless mode, the rom and txt file names must not contain any spaces for sm64gsw to be able to load them.</p>
+
 <a name=changelog><h2>Changelog</h2></a>
+
+<p>Version 1.4 - 7/18/2021</p>
+<ul><li>Classic Mac OS support.</li>
+<li>SM64GSW now tells you what line an unsupported code is on when reading a .txt file of codes.</li>
+<li>Added verification and official support of SM64 USA, Japan, PAL, and Shindou edition ROMs in .z64 (big-endian) format.</li>
+<li>Implemented an argless mode. Used by default on classic macos, manually triggerable by <code>sm64gsw -a</code>.</li>
+<li>Added a codes written counter, you can now see how many codes you wrote with SM64GSW automatically.</li>
+<li>Rewrote input system.</li>
+<li>Now works on any other not mentioned big endian platform that defines <code>__BYTE_ORDER__ == BIG_ENDIAN</code> or <code>BIG_ENDIAN</code>.</li></ul>
 
 <p>Version 1.3 - 2/19/2021</p>
 <ul><li>Finally, Big Endian PowerPC Mac OS X is supported! Other Big Endian platforms are not yet however.</li></ul>
@@ -140,6 +165,10 @@
 
 <p>Compile for Mac OS X 10.3.9-10.6.8 PowerPC (works on Intel up to 10.6.8 if Rosetta is installed)</p>
 <code>make mac-ppc</code>
+
+<p>Compile on Mac OS 8.6 or 9.x for Mac OS 8.6+ using <a href=https://macintoshgarden.org/apps/macintosh-programmers-workshop>Macintosh Programmer's Workshop</a>.</p>
+<ul><li>Open <code>sm64gsw.make</code> from the Mac OS 9 <a href=#downloads>source</a> download (should open the MPW shell).</li>
+<li>Select the <code>Build</code> option in the menu bar and then click <code>Full Build</code>. Enter <code>sm64gsw</code> as the program name.</li></ul>
 
 <a name=license><h2>License</h2></a>
 <p>This license is distributed with SuperMario64GameSharkWriter.</p>

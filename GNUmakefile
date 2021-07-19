@@ -1,5 +1,5 @@
 # SM64GSW GNUMakeFile
-version := 1.3
+version := 1.4
 
 sm64gsw: clean
 	gcc sm64gsw.c -o sm64gsw

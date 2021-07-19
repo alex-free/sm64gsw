@@ -2,6 +2,17 @@ Work In Progress Known Working Codes List
 
 If the author of any code is known, they are credited in this list.
 
+Sillypuddy Mario Head (Intro) https://www.gamegenie.com/cheats/gameshark/n64/super_mario_64.html
+50325491 0097
+
+Super Fast Game https://www.gamegenie.com/cheats/gameshark/n64/super_mario_64.html
+A1248154 0000
+A1248156 0000
+
+Remove Mario's Cap https://www.gamegenie.com/cheats/gameshark/n64/super_mario_64.html
+A1254A30 0000
+A1254A32 0000
+
 There's A Giant Eye Ball Somewhere In Hazy Maze Cave by James S https://sites.google.com/site/jamesskingdom/Home/game-codes-by-james-s/super-mario-64-codes/sm64-misc-codes#h.dkqchdj3pzny
 81331CA2 0054
 81331CA4 0000
@@ -25,87 +36,56 @@ NOTE: This code works, but the chuckyas are invisible.
 Triple Damage by 1ianmario https://sites.google.com/site/jamesskingdom/Home/game-codes-by-james-s/super-mario-64-codes/sm64-misc-codes#h.dkqchdj3pzny
 80254207 8000
 
-
 King Bob-Omb Appears Instead Of Water Bomb Drop 
 81331B3A 01F4 
 80331B3D 0056 
 Turn this code on before the title screen appears. Go to Bob-Omb Battlefield and go where the water bomb drop objects usually be and you should find king bob-ombs. 
 NOTE: This code works, but the king bob-ombs are invisible.
 
-
-Yoshi Is Always On The Roof
+Yoshi Is Always On The Roof https://sites.google.com/site/messiaen64/patching-gameshark-codes
 812F8EC8 2400
-https://sites.google.com/site/messiaen64/patching-gameshark-codes
 
-
-Move Instantly After Teleportation by gamemasterplc
+Move Instantly After Teleportation by gamemasterplc https://sites.google.com/site/gamemasterplcscheatcodes/nintendo-64/super-mario-64-ntsc-u
 81249B48 2400
-https://sites.google.com/site/gamemasterplcscheatcodes/nintendo-64/super-mario-64-ntsc-u
 
-
-No wobbly paitings by gamemasterplc
+No wobbly paitings by gamemasterplc https://sites.google.com/site/gamemasterplcscheatcodes/nintendo-64/super-mario-64-ntsc-u
 812D5950 2400
-https://sites.google.com/site/gamemasterplcscheatcodes/nintendo-64/super-mario-64-ntsc-u
 
-
-Level Select
+Level Select https://tcrf.net/Super_Mario_64_(Nintendo_64)/Debug_Content
 A032D58C 0001
-https://tcrf.net/Super_Mario_64_(Nintendo_64)/Debug_Content
 
-
-Debug Resource Meter
+Debug Resource Meter https://tcrf.net/Super_Mario_64_(Nintendo_64)/Debug_Content
 8032D594 0001
-https://tcrf.net/Super_Mario_64_(Nintendo_64)/Debug_Content
 
-
-Classic Debug display
+Classic Debug display https://tcrf.net/Super_Mario_64_(Nintendo_64)/Debug_Content
 A032D598 0059
-https://tcrf.net/Super_Mario_64_(Nintendo_64)/Debug_Content
 
-
-Disable Pause by gamemasterplc
+Disable Pause by gamemasterplc https://sites.google.com/site/gamemasterplcscheatcodes/nintendo-64/super-mario-64-ntsc-u
 81249734 1000
-https://sites.google.com/site/gamemasterplcscheatcodes/nintendo-64/super-mario-64-ntsc-u
 
-
-Disable Death Barrier by gamematerplc
+Disable Death Barrier by gamematerplc https://sites.google.com/site/gamemasterplcscheatcodes/nintendo-64/super-mario-64-ntsc-u
 812505F4 1000
-https://sites.google.com/site/gamemasterplcscheatcodes/nintendo-64/super-mario-64-ntsc-u
 
-
-Enter Vanish Cap Under The Moat Without Draining Moat by gamemasterplc
+Enter Vanish Cap Under The Moat Without Draining Moat by gamemasterplc https://sites.google.com/site/gamemasterplcscheatcodes/nintendo-64/super-mario-64-ntsc-u
 812BA5D0 2400
-https://sites.google.com/site/gamemasterplcscheatcodes/nintendo-64/super-mario-64-ntsc-u
 
-
-No Surface Heal by gamemasterplc
+No Surface Heal by gamemasterplc https://sites.google.com/site/gamemasterplcscheatcodes/nintendo-64/super-mario-64-ntsc-u
 8125415C 1000 
-https://sites.google.com/site/gamemasterplcscheatcodes/nintendo-64/super-mario-64-ntsc-u
 
-
-Remove Mario's Cap
+Remove Mario's Cap https://www.gamegenie.com/cheats/gameshark/n64/super_mario_64.html
 A1254A30 0000
 A1254A32 0000
-https://www.gamegenie.com/cheats/gameshark/n64/super_mario_64.html
 
-
-3D Objects Always Face Mario by James S
+3D Objects Always Face Mario by James S https://sites.google.com/site/jamesskingdom/Home/game-codes-by-james-s/super-mario-64-codes
 8029CB73 0025
-https://sites.google.com/site/jamesskingdom/Home/game-codes-by-james-s/super-mario-64-codes
 
-
-Mario Always Faces Camera by James S
+Mario Always Faces Camera by James S https://sites.google.com/site/jamesskingdom/Home/game-codes-by-james-s/super-mario-64-codes
 81254866 0005
 81254872 5025
-https://sites.google.com/site/jamesskingdom/Home/game-codes-by-james-s/super-mario-64-codes
 
-
-Non-Stop
+Non-Stop https://sites.google.com/site/sm64gameshark/codes/non-stop
 8124DDBC 2400
 8124DE1C 2400 
-https://sites.google.com/site/sm64gameshark/codes/non-stop
 
-
-Skip Intro
+Skip Intro https://sites.google.com/site/sm64gameshark/codes/practice-files
 8124BBD4 2400
-https://sites.google.com/site/sm64gameshark/codes/practice-files
